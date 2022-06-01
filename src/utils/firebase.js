@@ -5,12 +5,14 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyABhoChx6NKsyMYm6HI4YLPHNERozh4kvo",
-    authDomain: "embedded-project-efe7b.firebaseapp.com",
-    projectId: "embedded-project-efe7b",
-    storageBucket: "embedded-project-efe7b.appspot.com",
-    messagingSenderId: "408956803749",
-    appId: "1:408956803749:web:cc1c8ddf6e0345fbe44b4c"
+    apiKey: "AIzaSyBVFYTEEjpz7QiI-ezzNb87GeWnyk4imMw",
+    authDomain: "embededlab-aa618.firebaseapp.com",
+    databaseURL: "https://embededlab-aa618-default-rtdb.firebaseio.com",
+    projectId: "embededlab-aa618",
+    storageBucket: "embededlab-aa618.appspot.com",
+    messagingSenderId: "956472249018",
+    appId: "1:956472249018:web:bcfa39421d30423f529083",
+    measurementId: "G-23F26981WN"
 };
 
 // Initialize Firebase
