@@ -4,11 +4,6 @@ import database from './utils/firebase'
 import { ref, onValue, set, get, child} from 'firebase/database'
 
 
-
-function delay(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
-}
-
 function App() {
     const [count, setCount] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
@@ -26,28 +21,26 @@ function App() {
         
         // door status
         let doorStatusQuery = ref(database, 'Door_status');
-        onValue(doorStatusQuery, (snapshot) => {
+        onValue(doorStatusQuery, async (snapshot) => {
             const currentDoorStatus = snapshot.val();
-            if (currentDoorStatus === 0){
+            if (currentDoorStatus === 1){
                 // normal case : person with normal temperature enter the building
-                setIsOpen(currentDoorStatus).then(() => 
-                    setEnter(currentDoorStatus).then(() =>
-                        delay(1000))
-                );
+                setIsOpen(true); 
+                setEnter(true);
+                setOver(false);
                                              
             }else{
                 if (currentDoorStatus === 2){
                     // overheat case : person with temperature > 30.5 try to enter
-                    setIsOpen(false).then(() => 
-                        setEnter(false).then(() =>
-                            setOver(true).then(() =>
-                                delay(1000))
-                    ));
+                    setIsOpen(false);
+                    setEnter(false);
+                    setOver(true);
 
                 }else{
                     // door close : no person try to enter 
-                    setIsOpen(currentDoorStatus);
-                    setEnter(currentDoorStatus);
+                    setTimeout(setOver(false), 1000);
+                    setTimeout(setEnter(false), 1000);
+                    setTimeout(setIsOpen(false), 1000);                    
                 }                
             }
         });
